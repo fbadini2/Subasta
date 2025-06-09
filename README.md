@@ -1,63 +1,39 @@
 # Subasta
-Smart contract written for the Ethereum blockchain, implementing an online public auction
 
-Este contrato implementa una subasta simple pero completa utilizando Solidity. Soporta ofertas múltiples, extensión de tiempo automática, gestión de comisiones, reembolsos y más.
+Smart contract written for the Ethereum blockchain, implementing an online public auction.
 
-## Características principales
+This contract implements a simple yet complete auction using Solidity. It supports multiple bids, automatic time extension, commission management, refunds, and more.
 
-- Subasta con límite de tiempo ajustable.
-- Cada nueva oferta extiende el tiempo restante 10 minutos.
-- Registro de todas las ofertas y postores.
-- Reembolso automático a los postores no ganadores con comisión del 2%.
-- Eventos para notificar a los usuarios en tiempo real.
-- Acceso seguro mediante modificadores (`soloPropietario`, `subastaActiva`, etc.).
-- Función para que el propietario retire comisiones acumuladas.
+## Main features
 
----
-
-## Estructura del contrato
-
-### Variables clave
-- `propietario`: dirección que despliega la subasta.
-- `mejorPostor` y `mejorOferta`: oferta ganadora.
-- `finalizada`: indica si la subasta ha concluido.
-- `ofertasTotales`: mapping de cada postor con su mejor oferta.
-- `devoluciones`: reembolsos pendientes para cada postor.
-- `totalComisiones`: acumulado de comisiones del 2%.
-
-### Eventos
-- `NuevaOferta`: cuando alguien supera la oferta actual.
-- `SubastaFinalizada`: cuando termina la subasta y se declara ganador.
-- `FondosRetirados`: cuando un postor retira su reembolso.
-- `ComisionesRetiradas`: cuando el propietario cobra sus comisiones.
-
-### Modificadores
-- `soloPropietario`: restringe acceso al creador del contrato.
-- `subastaActiva`: asegura que la subasta aún está abierta.
-- `subastaFinalizada`: restringe funciones hasta que la subasta haya concluido.
-- `antesDelFin`: valida que no se ha vencido el tiempo.
+- Auction with adjustable time limit.
+- Each new offer extends the remaining time by 10 minutes.
+- Record of all offers and bidders.
+- Refund to unsuccessful bidders with a 2% commission.
+- Events to notify users in real time.
+- Secure access through modifiers (`onlyOwner`, `activeAuction`, etc.).
+- Function for the owner to withdraw accumulated commissions.
 
 ---
 
-## ⚙️ Uso en Remix
+## Use of Remix
 
-1. Abre [Remix](https://remix.ethereum.org)
-2. Crea un archivo `Subasta.sol` y pega el contrato.
-3. Compílalo usando la versión `^0.8.0`.
-4. Despliega el contrato desde la pestaña "Deploy & Run":
-   - Ingresa duración inicial (en segundos) como parámetro constructor.
-5. Simula diferentes postores usando las cuentas disponibles.
-6. Llama a `finalizarSubasta()` para terminar la subasta y distribuir fondos.
-7. Cada postor no ganador puede llamar a `retirar()` para recibir su dinero.
+1. Open [Remix](https://remix.ethereum.org)
+2. Create an Auction.sol file and paste the contract.
+3. Compile it using version `^0.8.0`.
+4. Deploy the contract from the "Deploy & Run" tab:
+   - Enter initial duration (in seconds) as a parameter.
+5. Simulate different bidders using the available accounts.
+6. Call `endAuction()` to end the auction and distribute funds.
+7. Each losing bidder can call `withdraw()` to receive their money.
 
 
-## 📄 Licencia
+## License
 
-Este proyecto se publica bajo la licencia MIT. Puedes usar, modificar o distribuir este contrato libremente, dando crédito adecuado al autor original.
+This project is published under the MIT License. You may freely use, modify, or distribute this agreement, providing proper credit is given to the original author.
 
 ---
 
-## ✍️ Autor
+## Autor
 
-Desarrollado con fines educativos y experimentales por [Tu Nombre o Alias].
-
+Developed for educational and experimental purposes by Fabián Badini
